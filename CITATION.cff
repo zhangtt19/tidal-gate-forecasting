@@ -1,12 +1,12 @@
 cff-version: 1.2.0
-message: "For the underlying research, cite the preferred paper. This repository is a later independent implementation."
-title: "Tidal Gate Forecasting and Discharge Estimation"
-type: software
+message: "Please cite the preferred paper for this research portfolio."
+title: "Dynamic Trend Prediction of Discharge Through Tidal Harbor Gates"
+type: dataset
 authors:
   - family-names: Zhang
     given-names: Tianshu
 repository-code: "https://github.com/zhangtt19/tidal-gate-forecasting"
-version: 0.1.0
+version: 1.0.0
 preferred-citation:
   type: article
   title: "Research on Dynamic Trend Prediction Method for Flow Discharge Through Harbor Gates in Tidal Reaches"

@@ -13,8 +13,8 @@
 
 `geometry.csv`: study gate width and sill elevation in metres, using the same datum as the original water levels. Fixed values do not encode changing gate openings.
 
-`example_history.csv`: a 12-observation Doulong sequence selected from the 2006 holdout, ending before a scored forecast. It is an inference-input example, not additional training data.
+`provenance.json`: original workbook-relative paths and SHA-256 hashes. `scripts/import_sources.py` documents the CSV export from the two source workbooks.
 
-`provenance.json`: original relative paths and SHA-256 hashes. Data were exported with `scripts/import_sources.py`; that script requires `xlrd` and the two original author-held workbooks. Normal users can reproduce both experiments from the CSV without those workbooks.
+The included records cover four gates in 2003 and 2006. They retain observed values, source-row identifiers and operation-marker rows. Check timestamp order, missing values, operation remarks, time units and the applicability of the submerged-flow equation before constructing a training dataset. The observation export does not define a train/test split.
 
-See `results/data_quality.json` and `results/excluded_observations.csv` for cleaning decisions and `docs/RIGHTS.md` for reuse status.
+See [research method](../docs/METHOD.md), [published results](../docs/PUBLISHED_RESULTS.md) and [material-use information](../docs/RIGHTS.md).

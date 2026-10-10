@@ -1,105 +1,106 @@
-# Tidal Gate Forecasting & Discharge Estimation
+# Dynamic Trend Prediction of Discharge Through Tidal Harbor Gates
 
-**A research-to-code machine-learning case study by Tianshu Zhang.**  
-Four tidal gates · published research · original result figures · runnable Python experiments
+**Enriching limited hydrological observations with temporal-change features, learning a dynamic discharge coefficient with a BP neural network, and evaluating performance during gate operations.**
 
-[中文说明](README.zh-CN.md) · [Published paper](https://doi.org/10.3390/w17091248) · [Method & evaluation](docs/METHOD.md) · [All paper figures](docs/PAPER_FIGURES.md) · [Historical figures](docs/ARCHIVED_FIGURES.md) · [New experiment figures](docs/EXPERIMENT_FIGURES.md)
+[中文](README.zh-CN.md) · [Paper](https://doi.org/10.3390/w17091248) · [Patent publication](https://patents.google.com/patent/CN119578220A/en) · [Method](docs/METHOD.md) · [Detailed results](docs/PUBLISHED_RESULTS.md) · [Figure gallery](docs/PAPER_FIGURES.md)
 
-## The engineering question
+This research portfolio presents Tianshu Zhang's first-author Water paper (2025) and its associated patent method. The study uses water-level and discharge observations from 2003 and 2006 at four tidal harbor gates in Jiangsu, China: Sheyang River, Huangsha, Doulong and Xinyang.
 
-Coastal gates operate under changing upstream levels, downstream tides and gate conditions. Can a small neural network improve discharge estimates—and does a model that fits historical data also forecast unseen observations?
+## Engineering question
 
-This repository turns the author's published research into a runnable Python portfolio project. It includes **1,309 monitoring records from four gates in 2003 and 2006**, source provenance, two explicit modelling tasks, simple baselines, figures and automated tests.
+Tidal backwater and gate operation produce a changing relationship between water levels and discharge. Similar upstream and downstream levels can occur under different flow conditions. The study adds temporal-change information to the available observations, learns a dynamic submerged-discharge coefficient, and uses that coefficient in the weir-flow equation.
 
-The original study used a proprietary neural-network training module. **This code is a new, AI-assisted implementation and extension, not the original software or a claim of reproducing the paper's reported accuracy.**
+## From observations to six inputs
 
-## Original published research
+The measured variables are timestamp t, upstream level Zu, downstream level Zd and discharge Q. Time supports the calculation of rates of change; observed discharge supports both the discharge-rate feature and the coefficient target.
 
-The original work studied dynamic discharge estimation/prediction at tidal harbor gates using a BP neural network within an existing engineering software module. The paper reports improvements over the traditional weir-flow formula. For example, its Figure 6 reports Doulong correlation-plot R² values of 0.6227 (weir formula) and 0.8876 (dynamic trend method); Figure 7 reports 0.1963 and 0.7547 for Xinyang. These are the paper's reported correlation statistics, not scores from this repository's Python benchmark.
+| Network input | Information represented |
+|---|---|
+| $Z_u$ | Upstream water-level condition |
+| $Z_d$ | Downstream water-level condition |
+| $\partial Z_u/\partial t$ | Upstream level trend |
+| $\partial Z_d/\partial t$ | Downstream level trend |
+| $\partial(Z_u-Z_d)/\partial t$ | Change in hydraulic head difference |
+| $\partial Q/\partial t$ | Discharge trend |
 
-![Original paper Figure 6: Doulong method comparison](assets/paper/figure-06.png)
+These features combine hydraulic state with its temporal evolution using the existing measurements. Rates require actual elapsed times and consistent units. See paper §3.2 and Tables 2–3.
 
-**Complete visual record:** [all 10 published figures](docs/PAPER_FIGURES.md), [13 historical result/plot exports](docs/ARCHIVED_FIGURES.md), and [all 3 new Python experiment figures](docs/EXPERIMENT_FIGURES.md). Original figures retain their source captions; archived versions have separate provenance.
-
-## New Python implementation
-
-The following tasks, evaluation protocol and tables belong to a later, independent implementation. They do not establish how the original proprietary model would perform under the same protocol.
-
-### Two tasks, clearly separated
-
-| Task | Available at inference | Output | Purpose |
-|---|---|---|---|
-| Physics-guided estimation | Current upstream/downstream levels and two past flow observations | Current discharge via a learned coefficient and a weir formula | Demonstrate a causal, inspectable hybrid model |
-| Rolling forecast | Previous 12 observations of levels/flow, with elapsed-time gaps | Discharge at the next recorded observation | Test the user's rolling-prediction interpretation as a separate extension |
-
-The forecasting window is **12 observations, not 12 hours**. Sampling is irregular. Forecasting inputs never include the target discharge, target water levels or the realized next sampling interval. The hybrid estimator has current water-level measurements available; its results are **not advance-forecast performance**.
-
-## What I contributed
-
-For the original research, I carried out data preparation, feature construction, parameter experiments, analysis and preparation of the paper and associated patent materials, starting from my supervisor's research concept. Model training used the company's existing software module.
-
-This portfolio adds a Python implementation, explicit data contracts, chronological evaluation, baseline comparisons and repeatable tests. AI assisted with code and documentation development. Authorship of the original training software is not claimed.
-
-## Run it
-
-Python 3.11+ (tested on 3.12):
-
-```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
-python -m pip install -e ".[dev]"
-python -m pytest -q
-tidal-gate benchmark
-python -m tidal_gate.hybrid
+```mermaid
+flowchart LR
+    A[Levels, discharge and timestamps] --> B[Two level features and four change rates]
+    A --> C[Historical coefficients from the weir equation]
+    B --> D[Train BP neural network]
+    C --> D
+    D --> E[Predict a subsequent discharge coefficient]
+    E --> F[Calculate discharge using hydraulic conditions]
 ```
 
-No access to the proprietary software is required. The CSV data needed for both experiments is included. The first command writes forecasting models under `results/models/`; these generated binary files are not committed.
+The network predicts the submerged-discharge coefficient. The final discharge calculation is:
 
-Predict using a saved forecasting model and a 12-record history:
+$$
+\hat Q=\hat\phi B H_s\sqrt{2g(Z_u-Z_d)},\qquad H_s=Z_d-Z_0
+$$
 
-```bash
-tidal-gate predict --model results/models/doulong_mlp.joblib --history data/example_history.csv
-```
+B is the total gate-opening width, Z0 the sill elevation and g gravitational acceleration. The Doulong example uses B = 80 m, Z0 = −3 m and g = 9.8 m/s². Historical observed discharge provides coefficient targets; the paper pairs features with a subsequent coefficient. Discharge calculation also requires water levels and opening geometry for the target time.
 
-Only load model files that you trust. `joblib` models can execute code during loading.
+## Network configuration
 
-## Evaluation of the new Python experiments
+The study uses a **6–5–1 BP network**. Settings below are reported in §3.2 and Table 4.
 
-- Fit on **2003**. Select hyperparameters on the last 20% of eligible 2003 windows, purging overlapping training histories. Refit on 2003 only.
-- Hold out **2006** until scoring; no random split across neighboring time samples.
-- Fit feature/target scalers on training data only. Keep model weights frozen while observed history advances.
-- Compare with persistence, regularized linear regression, a train-only constant coefficient and a previous-coefficient baseline, as appropriate to each task.
-- In this new cross-year experiment, the 12-observation MLP has higher RMSE than persistence at all four gates. The new hybrid estimator improves over a fixed coefficient at all four gates, but has lower RMSE than discharge persistence only at Doulong. These findings concern this implementation and evaluation, not the original paper model.
+| Setting | Reported value |
+|---|---|
+| Input / hidden / output neurons | 6 / 5 / 1 |
+| Activation | tanh for hidden/output layers in the text; Table 4 lists “Double Sigmoid Cutoff Function” |
+| Training method | High-Precision Processing Method |
+| Connection rate | 1.0 |
+| Learning rate | 0.7 |
+| Training coefficient precision | 0.001 |
+| Maximum training iterations | 10,000 |
+| Momentum | 0.5 |
 
-**What is persistence?** It predicts the next discharge by repeating the latest observed discharge: Q̂(next) = Q(latest). It needs no training. Slowly changing flow can make this a competitive short-horizon reference; a neural network is not guaranteed to beat it. A fair comparison requires the same targets, information availability and test observations.
+## Overall performance
 
-### Hybrid estimation: 2006 holdout RMSE (m³/s)
+The dynamic trend prediction method (DTPM) improves agreement with observed discharge relative to the traditional weir-flow method in the study dataset.
 
-| Gate | Eligible test rows | Fixed coefficient | Last discharge | Hybrid neural network |
-|---|---:|---:|---:|---:|
-| Doulong | 90 | 62.20 | 77.78 | 39.21 |
-| Huangsha | 100 | 124.67 | 25.51 | 39.33 |
-| Sheyang | 54 | 346.44 | 224.82 | 233.25 |
-| Xinyang | 95 | 200.96 | 78.14 | 104.49 |
+| Year | Mean correlation: traditional → DTPM | Mean relative error: traditional → DTPM |
+|---|---|---|
+| 2003 | 0.22 → 0.81 | 16.42% → 3.00% |
+| 2006 | 0.35 → 0.82 | 9.73% → 1.32% |
 
-Lower is better. The numbers in this table are **new benchmark results**, not the paper's reported metrics. See [hybrid results](results/HYBRID_RESULTS.md) and [forecasting results](results/RESULTS.md) for all models, sample coverage, MAE and R². The two tasks use different eligible samples and should not be directly ranked against each other.
+Source: paper Table 7. Correlation coefficients in this table differ from the R² values in the figure below.
 
-![Cross-year forecasting comparison](results/benchmark.png)
+![Paper Figure 6: Doulong comparison in 2006](assets/paper/figure-06.png)
 
-## Inspect the work
+Five-fold cross-validation reports mean relative errors of **5.96%, 6.43%, 13.95% and 9.57%** at Doulong, Huangsha, Sheyang and Xinyang, respectively (Table 5). The paper reports cross-validation errors, standard deviations and plotted error bands; it does not specify confidence intervals at a stated confidence level. [Detailed results](docs/PUBLISHED_RESULTS.md) retain these distinctions.
 
-- [`src/tidal_gate/`](src/tidal_gate/): cleaning, causal features, model selection, evaluation and inference.
-- [`data/`](data/): observations, geometry, schema and source-file hashes.
-- [`tests/`](tests/): future-information isolation, window alignment, missing records and physical-factor checks.
-- [`results/`](results/): full prediction tables, metrics, exclusion log, validation selections and run configuration.
-- [`docs/SOURCE_AUDIT.md`](docs/SOURCE_AUDIT.md): how archived training materials differ from the new implementation.
-- [Complete figure galleries](docs/PAPER_FIGURES.md): original publication, historical exports and new experiment outputs, with [source metadata](assets/figure-provenance.json).
+## Gate opening and closing
 
-## Research context and limits
+The study separately examines operational transitions, where rapidly changing hydraulic conditions can produce large local errors despite reasonable overall agreement.
 
-The associated study is Zhang et al. (2025), *Research on Dynamic Trend Prediction Method for Flow Discharge Through Harbor Gates in Tidal Reaches*, Water 17(9), 1248. [DOI](https://doi.org/10.3390/w17091248). Associated patent: [CN119578220B](https://patents.google.com/patent/CN119578220B/en).
+![Paper Figure 10: gate-operation discharge and error bands](assets/paper/figure-10.png)
 
-This small, retrospective dataset cannot establish performance at new gates or under unseen operating policies. Fixed geometry does not capture all changing gate openings. A 24-hour gap rule defines sample eligibility, not a known operational event boundary. There is no deployment claim or guaranteed lead time. Unpublished manuscript drafts, review correspondence and proprietary model files are not redistributed. Published figure excerpts and author-supplied historical plots are included with source labels.
+- Across the selected Table 8 events, maximum absolute relative error falls from **24.06% to 7.80%** at Doulong and from **176.88% to 28.28%** at Xinyang.
+- At the particular Xinyang event with a traditional-method error of **176.88%**, DTPM gives an absolute relative error of **14.06%**.
+- Under low water levels, Xinyang's mean relative error falls from **27.95% to 4.86%**. During slow gate opening, Doulong's falls from **12.49% to 2.68%** (Table 9).
 
-Data are supplied from the author's archive with the author's permission for this portfolio. No blanket license is asserted for the original dataset, paper, patent or proprietary software; see [rights and provenance](docs/RIGHTS.md).
+Not every individual transition improves. All 12 event samples and the four operational scenarios are included in the [result tables](docs/PUBLISHED_RESULTS.md).
+
+## Applying the approach
+
+For engineers and researchers who have water-level/discharge records and access to a trainable neural-network model, the study offers a practical feature-design and evaluation workflow:
+
+1. Extract physically meaningful trends from existing time-stamped measurements.
+2. Learn a time-varying coefficient connected to a hydraulic equation.
+3. Evaluate overall behavior and operational transitions separately.
+
+The reported network settings are a starting configuration for this case. Transfer to another gate requires training and validation against its own observations, sampling resolution and operating conditions.
+
+## Research materials
+
+- [Method](docs/METHOD.md): inputs, coefficient target, configuration and application steps.
+- [Results](docs/PUBLISHED_RESULTS.md): overall, cross-validation, event and scenario results.
+- [All 10 published figures](docs/PAPER_FIGURES.md) and [historical result exports](docs/ARCHIVED_FIGURES.md).
+- [Observation data and dictionary](data/README.md).
+- [Paper](https://doi.org/10.3390/w17091248) and [associated patent publication CN119578220A](https://patents.google.com/patent/CN119578220A/en).
+
+Research work encompasses observation preparation, feature construction, parameter experiments, result analysis and preparation of publication and patent materials. See [CITATION.cff](CITATION.cff) for citation information and [RIGHTS](docs/RIGHTS.md) for material-use information.

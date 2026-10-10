@@ -1,12 +1,12 @@
 # 原论文完整图集 / Published paper figures
 
-[返回项目 / Project](../README.md) · [历史结果图 / Archived figures](ARCHIVED_FIGURES.md) · [新增实验图 / New experiments](EXPERIMENT_FIGURES.md)
+[返回项目 / Project](../README.md) · [历史结果图 / Archived figures](ARCHIVED_FIGURES.md)
 
 以下是作者提供的最终发表论文中的全部 10 幅图，按原图号排列，包括研究区、方法示意和结果。图像直接从论文渲染裁取，保留原图及图注，没有重新计算或改写数值。
 
-Source: Zhang et al. (2025), *Research on Dynamic Trend Prediction Method for Flow Discharge Through Harbor Gates in Tidal Reaches*, Water 17(9), 1248. [DOI](https://doi.org/10.3390/w17091248). PDF page numbers below include the cover. These are the original published results, not the outputs of the new Python implementation.
+Source: Zhang et al. (2025), *Research on Dynamic Trend Prediction Method for Flow Discharge Through Harbor Gates in Tidal Reaches*, Water 17(9), 1248. [DOI](https://doi.org/10.3390/w17091248). PDF page numbers below include the cover.
 
-论文图 6–7 比较动态趋势法与传统堰流公式；这与新增代码中“最近一次实测流量”基准的比较不同。论文中的相关性指标也不能直接替换成新增测试集上的误差指标。
+论文图 6–7 比较动态趋势法与传统堰流公式。方法、网络参数和定量结果见 [研究方法](METHOD.md) 与 [结果表](PUBLISHED_RESULTS.md)。
 
 ## Figure 1 — 研究区与 DEM / Study area and DEM
 
