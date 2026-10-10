@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "For the underlying research, cite the preferred paper. This repository is a later independent implementation."
+title: "Tidal Gate Forecasting and Discharge Estimation"
+type: software
+authors:
+  - family-names: Zhang
+    given-names: Tianshu
+repository-code: "https://github.com/zhangtt19/tidal-gate-forecasting"
+version: 0.1.0
+preferred-citation:
+  type: article
+  title: "Research on Dynamic Trend Prediction Method for Flow Discharge Through Harbor Gates in Tidal Reaches"
+  authors:
+    - family-names: Zhang
+      given-names: Tianshu
+    - family-names: Jin
+      given-names: Jie
+    - family-names: Qian
+      given-names: Yixiao
+    - family-names: Wang
+      given-names: Chuanhai
+    - family-names: Chen
+      given-names: Gang
+  journal: Water
+  year: 2025
+  volume: 17
+  issue: 9
+  start: 1248
+  doi: 10.3390/w17091248

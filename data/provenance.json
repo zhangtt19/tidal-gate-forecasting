@@ -1,0 +1,33 @@
+{
+  "records": 1309,
+  "sources": [
+    {
+      "path": "2-专利撰写/处理过程/03 06/2003闸门流量资料--整理.xls",
+      "sha256": "b5b7cb513fab26694b3ee02f24ce9267c2aa20476d538d19e50bb79b4bb253b1"
+    },
+    {
+      "path": "2-专利撰写/处理过程/03 06/2006闸门流量资料--整理.xls",
+      "sha256": "95888b445d18459c5e1fc2779f55c39fa392ae47fac52836e2905dcad953b977"
+    },
+    {
+      "path": "5-转英文-Water/修改意见/2006/2006-射阳/2006-射阳.xls",
+      "sha256": "55a2999923e0a6071e62d2943d4a2383cc881945cdecf11ada02afb26ee351da"
+    },
+    {
+      "path": "5-转英文-Water/修改意见/2006/2006-黄沙/2006-黄沙.xls",
+      "sha256": "e33c9b84e74c17ebbc0922faf539860da64430fb6e5f46f872e65fc23e9a91f6"
+    },
+    {
+      "path": "5-转英文-Water/修改意见/2006/2006-斗龙/2006-斗龙.xls",
+      "sha256": "dc61c40d853a2fa90fb9144cbd1af3553796f886ea1f1a03c8ca8ddd05729308"
+    },
+    {
+      "path": "5-转英文-Water/修改意见/2006/2006-新洋/2006-新洋.xls",
+      "sha256": "ed77abe3a779c5f4378ba8b03264693837c51b27b97e77bdacdbb6f4dac25946"
+    }
+  ],
+  "origin": "Author-supplied research archive; 2003 and 2006 observations",
+  "publication": "https://doi.org/10.3390/w17091248",
+  "original_software": "Proprietary training module; not included",
+  "import": "scripts/import_sources.py"
+}

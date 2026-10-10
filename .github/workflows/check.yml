@@ -1,0 +1,21 @@
+name: Reproduce benchmark
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-tested.txt
+      - run: pip install -e '.[dev]'
+      - run: pytest -q
+      - run: tidal-gate benchmark --output /tmp/tidal-gate-results
+      - run: python -m tidal_gate.hybrid --output /tmp/tidal-gate-results
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reproduced-results
+          path: /tmp/tidal-gate-results

@@ -1,0 +1,90 @@
+[
+  {
+    "year": 2003,
+    "gate": "斗龙",
+    "dat_rows": 266,
+    "clean_sheet_rows": 266,
+    "dat_matches_same_row_features_and_coefficient": false,
+    "tested_adjacent_pairs": 283,
+    "q_rate_matches_change_per_excel_day": 283,
+    "head_rate_matches_difference_per_day": 7,
+    "head_rate_matches_sum_per_day": 283
+  },
+  {
+    "year": 2003,
+    "gate": "黄沙",
+    "dat_rows": 167,
+    "clean_sheet_rows": 167,
+    "dat_matches_same_row_features_and_coefficient": true,
+    "tested_adjacent_pairs": 259,
+    "q_rate_matches_change_per_excel_day": 259,
+    "head_rate_matches_difference_per_day": 55,
+    "head_rate_matches_sum_per_day": 259
+  },
+  {
+    "year": 2003,
+    "gate": "射阳",
+    "dat_rows": 105,
+    "clean_sheet_rows": 105,
+    "dat_matches_same_row_features_and_coefficient": false,
+    "tested_adjacent_pairs": 119,
+    "q_rate_matches_change_per_excel_day": 119,
+    "head_rate_matches_difference_per_day": 16,
+    "head_rate_matches_sum_per_day": 119
+  },
+  {
+    "year": 2003,
+    "gate": "新洋",
+    "dat_rows": 245,
+    "clean_sheet_rows": 245,
+    "dat_matches_same_row_features_and_coefficient": true,
+    "tested_adjacent_pairs": 282,
+    "q_rate_matches_change_per_excel_day": 282,
+    "head_rate_matches_difference_per_day": 32,
+    "head_rate_matches_sum_per_day": 282
+  },
+  {
+    "year": 2006,
+    "gate": "斗龙",
+    "dat_rows": 99,
+    "clean_sheet_rows": 99,
+    "dat_matches_same_row_features_and_coefficient": true,
+    "tested_adjacent_pairs": 104,
+    "q_rate_matches_change_per_excel_day": 104,
+    "head_rate_matches_difference_per_day": 5,
+    "head_rate_matches_sum_per_day": 104
+  },
+  {
+    "year": 2006,
+    "gate": "黄沙",
+    "dat_rows": 106,
+    "clean_sheet_rows": 106,
+    "dat_matches_same_row_features_and_coefficient": true,
+    "tested_adjacent_pairs": 125,
+    "q_rate_matches_change_per_excel_day": 125,
+    "head_rate_matches_difference_per_day": 9,
+    "head_rate_matches_sum_per_day": 125
+  },
+  {
+    "year": 2006,
+    "gate": "射阳",
+    "dat_rows": 66,
+    "clean_sheet_rows": 66,
+    "dat_matches_same_row_features_and_coefficient": true,
+    "tested_adjacent_pairs": 88,
+    "q_rate_matches_change_per_excel_day": 88,
+    "head_rate_matches_difference_per_day": 16,
+    "head_rate_matches_sum_per_day": 88
+  },
+  {
+    "year": 2006,
+    "gate": "新洋",
+    "dat_rows": 103,
+    "clean_sheet_rows": 103,
+    "dat_matches_same_row_features_and_coefficient": false,
+    "tested_adjacent_pairs": 126,
+    "q_rate_matches_change_per_excel_day": 126,
+    "head_rate_matches_difference_per_day": 16,
+    "head_rate_matches_sum_per_day": 126
+  }
+]
