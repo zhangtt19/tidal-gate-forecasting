@@ -1,0 +1,311 @@
+[
+  {
+    "file": "assets/paper/figure-01.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 5,
+    "figure": 1,
+    "crop_points": [
+      150,
+      65,
+      566,
+      340
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/paper/figure-02.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 5,
+    "figure": 2,
+    "crop_points": [
+      155,
+      560,
+      566,
+      696
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/paper/figure-03.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 9,
+    "figure": 3,
+    "crop_points": [
+      35,
+      260,
+      566,
+      455
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/paper/figure-04.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 9,
+    "figure": 4,
+    "crop_points": [
+      35,
+      550,
+      566,
+      740
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/paper/figure-05.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 10,
+    "figure": 5,
+    "crop_points": [
+      35,
+      65,
+      566,
+      257
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/paper/figure-06.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 11,
+    "figure": 6,
+    "crop_points": [
+      35,
+      163,
+      566,
+      370
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/paper/figure-07.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 11,
+    "figure": 7,
+    "crop_points": [
+      35,
+      380,
+      566,
+      590
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/paper/figure-08.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 12,
+    "figure": 8,
+    "crop_points": [
+      40,
+      64,
+      566,
+      245
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/paper/figure-09.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 12,
+    "figure": 9,
+    "crop_points": [
+      40,
+      250,
+      566,
+      443
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/paper/figure-10.png",
+    "source": "5-转英文-Water/water-17-01248-with-cover.pdf",
+    "source_sha256": "559c730871ebc9d378dedebc603f8945f933aafb9ed4e780680098d32389b3b3",
+    "pdf_page": 13,
+    "figure": 10,
+    "crop_points": [
+      30,
+      246,
+      566,
+      490
+    ],
+    "render_dpi": 200
+  },
+  {
+    "file": "assets/archive/bp-2003.jpg",
+    "source": "1-BP神经网络/画图/返图/2003bp.jpg",
+    "source_sha256": "f7185eb31603e2778192102b6c8d75e843777ad665462a9e6344ab34da2bf935",
+    "original_pixels": [
+      19871,
+      14074
+    ],
+    "display_pixels": [
+      3200,
+      2267
+    ]
+  },
+  {
+    "file": "assets/archive/bp-2006.jpg",
+    "source": "1-BP神经网络/画图/返图/2006bp.jpg",
+    "source_sha256": "7b62b0e52f600380e2cd66ff8037c0d856fe6fd2b487a892a878eadadb09f313",
+    "original_pixels": [
+      19871,
+      14074
+    ],
+    "display_pixels": [
+      3200,
+      2267
+    ]
+  },
+  {
+    "file": "assets/archive/bp-2007.jpg",
+    "source": "1-BP神经网络/画图/返图/2007bp.jpg",
+    "source_sha256": "10ce0363eb2f0c9992f71a0449c0e467991ac3cb4827d00d010091deef448832",
+    "original_pixels": [
+      19871,
+      14074
+    ],
+    "display_pixels": [
+      3200,
+      2267
+    ]
+  },
+  {
+    "file": "assets/archive/plot-version-01.png",
+    "source": "5-转英文-Water/画图/origin画图/Graph3.tif",
+    "source_sha256": "8ada1395944936861d219dc45f443b80d40b4f953ac59c3d45ad3f01f90cdd9e",
+    "original_pixels": [
+      3423,
+      2391
+    ],
+    "display_pixels": [
+      3200,
+      2235
+    ]
+  },
+  {
+    "file": "assets/archive/plot-version-02.png",
+    "source": "5-转英文-Water/画图/origin画图/斗龙06加密时间轴.tif",
+    "source_sha256": "8e90b230bd9e687d7aff79a40d709f14f797884124f3b8efba304210b9f0708b",
+    "original_pixels": [
+      3216,
+      2461
+    ],
+    "display_pixels": [
+      3200,
+      2449
+    ]
+  },
+  {
+    "file": "assets/archive/plot-version-03.png",
+    "source": "5-转英文-Water/画图/origin画图/斗龙港06画图-中文.tif",
+    "source_sha256": "053036e100bf72214a8688bea5d025d9590d0d7f045f13ea6e3d6e5e86ffcf77",
+    "original_pixels": [
+      3216,
+      2461
+    ],
+    "display_pixels": [
+      3200,
+      2449
+    ]
+  },
+  {
+    "file": "assets/archive/plot-version-04.png",
+    "source": "5-转英文-Water/画图/origin画图/斗龙港06画图.tif",
+    "source_sha256": "4a5ea9aeb2f026c86952728dfc9149e8cdffc769010e569c3bb4f10c5b492a9a",
+    "original_pixels": [
+      3216,
+      2461
+    ],
+    "display_pixels": [
+      3200,
+      2449
+    ]
+  },
+  {
+    "file": "assets/archive/plot-version-05.png",
+    "source": "5-转英文-Water/画图/origin画图/新洋06加密时间轴.tif",
+    "source_sha256": "64b79cf299061eb887d737583924a4f1ccb46e4ef4b2a9b05abd6dbc411bb92f",
+    "original_pixels": [
+      3216,
+      2461
+    ],
+    "display_pixels": [
+      3200,
+      2449
+    ]
+  },
+  {
+    "file": "assets/archive/plot-version-06.png",
+    "source": "5-转英文-Water/画图/origin画图/新洋港06画图-中文.tif",
+    "source_sha256": "519fbf7c1a071a7be28e5c4c5835053e00697d4caa36824e35228836512a0ca4",
+    "original_pixels": [
+      3216,
+      2461
+    ],
+    "display_pixels": [
+      3200,
+      2449
+    ]
+  },
+  {
+    "file": "assets/archive/plot-version-07.png",
+    "source": "5-转英文-Water/画图/origin画图/新洋港06画图.tif",
+    "source_sha256": "0d31e147cea6f3d6ab5a31b1c67b49d5187f9012433fac8caf317594b6c78dac",
+    "original_pixels": [
+      3216,
+      2461
+    ],
+    "display_pixels": [
+      3200,
+      2449
+    ]
+  },
+  {
+    "file": "assets/archive/plot-version-08.png",
+    "source": "5-转英文-Water/画图/origin画图/时间轴加密.jpg",
+    "source_sha256": "22fce8df35714c908e4ea727da55d7d4ba3c72e50c2088fb7a3fdb32f5711627",
+    "original_pixels": [
+      5842,
+      2110
+    ],
+    "display_pixels": [
+      3200,
+      1156
+    ]
+  },
+  {
+    "file": "assets/archive/plot-version-09.png",
+    "source": "5-转英文-Water/画图/origin画图/时间轴加密2.jpg",
+    "source_sha256": "776226a9efa3759448b1f5898c1464d09b0629b6ab1983939f56cbf618ff4d0c",
+    "original_pixels": [
+      11685,
+      4221
+    ],
+    "display_pixels": [
+      3200,
+      1156
+    ]
+  },
+  {
+    "file": "assets/archive/historical-12-step-comparison.jpg",
+    "source": "2-专利撰写/屏幕截图 2024-09-30 211310.jpg",
+    "source_sha256": "3b764a10a70b906d8bc3bc48cd6b8b02bdd9e52af47b48f297a324c2b4285064",
+    "original_pixels": [
+      1442,
+      457
+    ],
+    "display_pixels": [
+      1442,
+      457
+    ]
+  }
+]

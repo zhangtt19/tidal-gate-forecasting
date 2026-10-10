@@ -1,9 +1,9 @@
 # Tidal Gate Forecasting & Discharge Estimation
 
 **A research-to-code machine-learning case study by Tianshu Zhang.**  
-Four tidal gates · real field observations · physics-guided estimation · honest temporal evaluation
+Four tidal gates · published research · original result figures · runnable Python experiments
 
-[中文说明](README.zh-CN.md) · [Published paper](https://doi.org/10.3390/w17091248) · [Method & evaluation](docs/METHOD.md) · [Results](results/HYBRID_RESULTS.md)
+[中文说明](README.zh-CN.md) · [Published paper](https://doi.org/10.3390/w17091248) · [Method & evaluation](docs/METHOD.md) · [All paper figures](docs/PAPER_FIGURES.md) · [Historical figures](docs/ARCHIVED_FIGURES.md) · [New experiment figures](docs/EXPERIMENT_FIGURES.md)
 
 ## The engineering question
 
@@ -13,9 +13,19 @@ This repository turns the author's published research into a runnable Python por
 
 The original study used a proprietary neural-network training module. **This code is a new, AI-assisted implementation and extension, not the original software or a claim of reproducing the paper's reported accuracy.**
 
-![Physics-guided estimation on held-out observations](results/hybrid_estimation.png)
+## Original published research
 
-## Two tasks, clearly separated
+The original work studied dynamic discharge estimation/prediction at tidal harbor gates using a BP neural network within an existing engineering software module. The paper reports improvements over the traditional weir-flow formula. For example, its Figure 6 reports Doulong correlation-plot R² values of 0.6227 (weir formula) and 0.8876 (dynamic trend method); Figure 7 reports 0.1963 and 0.7547 for Xinyang. These are the paper's reported correlation statistics, not scores from this repository's Python benchmark.
+
+![Original paper Figure 6: Doulong method comparison](assets/paper/figure-06.png)
+
+**Complete visual record:** [all 10 published figures](docs/PAPER_FIGURES.md), [13 historical result/plot exports](docs/ARCHIVED_FIGURES.md), and [all 3 new Python experiment figures](docs/EXPERIMENT_FIGURES.md). Original figures retain their source captions; archived versions have separate provenance.
+
+## New Python implementation
+
+The following tasks, evaluation protocol and tables belong to a later, independent implementation. They do not establish how the original proprietary model would perform under the same protocol.
+
+### Two tasks, clearly separated
 
 | Task | Available at inference | Output | Purpose |
 |---|---|---|---|
@@ -54,13 +64,15 @@ tidal-gate predict --model results/models/doulong_mlp.joblib --history data/exam
 
 Only load model files that you trust. `joblib` models can execute code during loading.
 
-## Evaluation, not just a fitted curve
+## Evaluation of the new Python experiments
 
 - Fit on **2003**. Select hyperparameters on the last 20% of eligible 2003 windows, purging overlapping training histories. Refit on 2003 only.
 - Hold out **2006** until scoring; no random split across neighboring time samples.
 - Fit feature/target scalers on training data only. Keep model weights frozen while observed history advances.
 - Compare with persistence, regularized linear regression, a train-only constant coefficient and a previous-coefficient baseline, as appropriate to each task.
-- Retain adverse results. The 12-step MLP loses to persistence at every gate in this cross-year test. The hybrid estimator improves over a fixed coefficient at all four gates, but beats discharge persistence only at Doulong.
+- In this new cross-year experiment, the 12-observation MLP has higher RMSE than persistence at all four gates. The new hybrid estimator improves over a fixed coefficient at all four gates, but has lower RMSE than discharge persistence only at Doulong. These findings concern this implementation and evaluation, not the original paper model.
+
+**What is persistence?** It predicts the next discharge by repeating the latest observed discharge: Q̂(next) = Q(latest). It needs no training. Slowly changing flow can make this a competitive short-horizon reference; a neural network is not guaranteed to beat it. A fair comparison requires the same targets, information availability and test observations.
 
 ### Hybrid estimation: 2006 holdout RMSE (m³/s)
 
@@ -71,7 +83,7 @@ Only load model files that you trust. `joblib` models can execute code during lo
 | Sheyang | 54 | 346.44 | 224.82 | 233.25 |
 | Xinyang | 95 | 200.96 | 78.14 | 104.49 |
 
-Lower is better. All figures are **new benchmark results**, not the paper's reported metrics. See [hybrid results](results/HYBRID_RESULTS.md) and [forecasting results](results/RESULTS.md) for all models, sample coverage, MAE and R². The two tasks use different eligible samples and should not be directly ranked against each other.
+Lower is better. The numbers in this table are **new benchmark results**, not the paper's reported metrics. See [hybrid results](results/HYBRID_RESULTS.md) and [forecasting results](results/RESULTS.md) for all models, sample coverage, MAE and R². The two tasks use different eligible samples and should not be directly ranked against each other.
 
 ![Cross-year forecasting comparison](results/benchmark.png)
 
@@ -82,12 +94,12 @@ Lower is better. All figures are **new benchmark results**, not the paper's repo
 - [`tests/`](tests/): future-information isolation, window alignment, missing records and physical-factor checks.
 - [`results/`](results/): full prediction tables, metrics, exclusion log, validation selections and run configuration.
 - [`docs/SOURCE_AUDIT.md`](docs/SOURCE_AUDIT.md): how archived training materials differ from the new implementation.
-- [`docs/PROJECT_BRIEF.zh-CN.md`](docs/PROJECT_BRIEF.zh-CN.md): a concise explanation for interviews and project discussions.
+- [Complete figure galleries](docs/PAPER_FIGURES.md): original publication, historical exports and new experiment outputs, with [source metadata](assets/figure-provenance.json).
 
 ## Research context and limits
 
 The associated study is Zhang et al. (2025), *Research on Dynamic Trend Prediction Method for Flow Discharge Through Harbor Gates in Tidal Reaches*, Water 17(9), 1248. [DOI](https://doi.org/10.3390/w17091248). Associated patent: [CN119578220B](https://patents.google.com/patent/CN119578220B/en).
 
-This small, retrospective dataset cannot establish performance at new gates or under unseen operating policies. Fixed geometry does not capture all changing gate openings. A 24-hour gap rule defines sample eligibility, not a known operational event boundary. There is no deployment claim or guaranteed lead time. Original manuscripts, review correspondence and proprietary model files are not redistributed.
+This small, retrospective dataset cannot establish performance at new gates or under unseen operating policies. Fixed geometry does not capture all changing gate openings. A 24-hour gap rule defines sample eligibility, not a known operational event boundary. There is no deployment claim or guaranteed lead time. Unpublished manuscript drafts, review correspondence and proprietary model files are not redistributed. Published figure excerpts and author-supplied historical plots are included with source labels.
 
 Data are supplied from the author's archive with the author's permission for this portfolio. No blanket license is asserted for the original dataset, paper, patent or proprietary software; see [rights and provenance](docs/RIGHTS.md).
